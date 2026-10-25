@@ -68,7 +68,7 @@ app.add_middleware(
 
 def chunk_text(text: str, chunk_size: int = CHUNK_SIZE) -> List[str]:
     """Split *text* into chunks of at most *chunk_size* characters on sentence boundaries."""
-    sentences = re.split(r"(?<=[.!?。！？])\s+", text.strip())
+    sentences = re.split(r"(?<=[.!?。！？።؟])\s+", text.strip())
     chunks: List[str] = []
     current = ""
     for sentence in sentences:
@@ -115,6 +115,8 @@ def translate(req: TranslateRequest):
         raise HTTPException(status_code=400, detail="Unsupported language")
     if not req.text.strip():
         raise HTTPException(status_code=400, detail="Text must not be blank")
+    if req.source_language == req.target_language:
+        return TranslateResponse(translation=req.text)
     result = models["translator"](
         chunk_text(req.text),
         src_lang=LANGUAGES[req.source_language],
