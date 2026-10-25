@@ -1,8 +1,13 @@
 from contextlib import asynccontextmanager
 
+import truststore
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from transformers import pipeline
+
+# Use the OS certificate store so downloads work behind TLS-inspecting proxies.
+truststore.inject_into_ssl()
 
 MODEL_NAME = "facebook/nllb-200-distilled-600M"
 

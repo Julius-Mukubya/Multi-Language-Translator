@@ -3,3 +3,4 @@ uvicorn[standard]
 transformers<5
 torch
 sentencepiece
+truststore
