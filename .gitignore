@@ -1,7 +1,11 @@
-﻿__pycache__/
+__pycache__/
 *.pyc
 .venv/
 venv/
 .env
+!.env.example
+!**/.env.example
 .streamlit/secrets.toml
 .claude/
+*.log
+.pytest_cache/
