@@ -1,5 +1,5 @@
 fastapi
 uvicorn[standard]
-transformers
+transformers<5
 torch
 sentencepiece
